@@ -71,7 +71,7 @@ Example: 0.0.0.0:8080 maps to https://your-docker-server.com or http://your-dock
 
 Endpoint:
 ```text
-GET https://your-wsp-server.com/yolanda/wsp?code=
+GET https://your-docker-server.com/yolanda/wsp?code=
 ```
 
 ## Endpoints between Docker and Server 
@@ -127,11 +127,11 @@ Content-Type：text/plain; charset=utf-8
 fail
 ```
 
-#### Calc Report（Server -> Docker)
+### Calc Report（Server -> Docker)
 
 #### Endpoint
 ```text
-GET https://your-wsp-server.com/yolanda/wsp/reports
+GET https://your-docker-server.com/yolanda/wsp/reports
 ```
 
 #### Example
@@ -284,11 +284,11 @@ Content-Type：text/plain; charset=utf-8
 fail
 ```
 
-### Eight Scale Report（Docker -> Server)
+### Eight Scale Report（Server -> Docker)
 
 #### Endpoint
 ```text
-GET https://your-wsp-server.com/yolanda/wsp/eight_reports
+GET https://your-docker-server.com/yolanda/wsp/eight_reports
 ```
 
 #### Example
@@ -309,7 +309,7 @@ GET https://your-wsp-server.com/yolanda/wsp/eight_reports
 | height | number  | Y        | Height (cm)                | mock: 175.2                  |
 | age    | integer | Y        | Age                        | mock: 20                     |
 | gender | integer | Y        | Gender(0: Female，1: Male) | mock: 1                      |
-| hmac   | string  | Y        | Signature Hmac             | mock: 183476B32E22B26989A... |
+| hmac   | string  | Y        | Signature hmac             | mock: 183476B32E22B26989A... |
 
 
 #### Success Response
