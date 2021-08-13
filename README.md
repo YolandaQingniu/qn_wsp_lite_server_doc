@@ -1,5 +1,7 @@
 # Yolanda WSP Docker SDK 接入文档
 
+[English](./README.en.md) | [中文](./README.md)
+
 最新SDK版本号: 1.0.0
 
 ## 交互原理
@@ -18,9 +20,9 @@ mkdir yolanda_wsp_lite && cd yolanda_wsp_lite
 第二步: 创建Dockerfile文件并写入
 
 ```dockerfile
-FROM registry.cn-shenzhen.aliyuncs.com/yolanda/wsp-lite:v1.0.0
+FROM registry.cn-shenzhen.aliyuncs.com/yolanda_open/wsp-lite:v1.0.0
 ENV CLIENT_URL="https://your-business-server.com"
-ENV CLIENT_KEY="Yolanda提供的16位SDK密钥"
+ENV CLIENT_ID="Yolanda提供的SDK密钥"
 ```
 
 第三步: 启动容器
@@ -360,8 +362,7 @@ WSP服务器成功响应：
         "bodyfat_left_arm": 0.8,
         "bodyfat_right_leg": 0.8,
         "bodyfat_left_leg": 0.8,
-        "bodyfat_trunk": 0.8,
-        "paunch": 0
+        "bodyfat_trunk": 0.8
       }
     },
     "msg": "ok"
@@ -421,5 +422,3 @@ WSP服务器失败响应：
 | bodyfat_right_leg | number  | 必须     | 右下肢脂肪量  | mock：0.8  |
 | bodyfat_left_leg  | number  | 必须     | 左下肢脂肪量  | mock：0.8  |
 | bodyfat_trunk     | number  | 必须     | 躯干脂肪量    | mock：0.8  |
-| pauch             | number  | 必须     | 肥胖度        | mock：0    |
-
