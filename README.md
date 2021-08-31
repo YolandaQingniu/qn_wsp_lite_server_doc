@@ -116,7 +116,7 @@ URI：`/wsp/measurements`
 
 #### 计算测量指标（业务服务器 => WSP服务器)
 
-请求方式：`GET`
+请求方式：`POST`
 
 WSP域名(需配置)：`"https://your-wsp-server.com" `
 
@@ -293,7 +293,7 @@ URI：`/wsp/eight_measurements`
 
 #### 八电极秤计算测量指标（业务服务器 => WSP服务器)
 
-请求方式：`GET`
+请求方式：`POST`
 
 WSP域名(需配置)：`"https://your-wsp-server.com" `
 

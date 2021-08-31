@@ -131,7 +131,7 @@ fail
 
 #### Endpoint
 ```text
-GET https://your-docker-server.com/yolanda/wsp/reports
+POST https://your-docker-server.com/yolanda/wsp/reports
 ```
 
 #### Example
@@ -288,7 +288,7 @@ fail
 
 #### Endpoint
 ```text
-GET https://your-docker-server.com/yolanda/wsp/eight_reports
+POST https://your-docker-server.com/yolanda/wsp/eight_reports
 ```
 
 #### Example
@@ -349,6 +349,9 @@ Content-Type: application/json
       "right_leg_fat": 0.8,
       "left_leg_fat": 0.8,
       "trunk_fat": 0.8
+    },
+    "extras": {
+
     }
   },
   "msg": "ok"
