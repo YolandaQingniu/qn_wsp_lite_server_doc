@@ -1,6 +1,6 @@
 # Document for Yolanda-WSP-Lite Server SDK 
 
-[English](./README.en.md) | [中文](./README.md)
+[English](./README.en.md) | [简体中文](./README.zh-CN.md)
 
 > The latest version: 1.0.0
 
@@ -417,19 +417,8 @@ Content-Type：text/plain; charset=utf-8
 | muscle_control           | number  | Y        | Muscle Control            | mock: 0.8  |
 | health_score             | number  | Y        | Health Score              | mock: 0.8  |
 | health_body_shape        | number  | Y        | Health Body Shape         | mock: 0.8  |
-| left_arm_muscle_weight   | number  | Y        | Left Arm Muscle Weight    | mock: 0.8  |
-| right_arm_muscle_weight  | number  | Y        | Right Arm Muscle Weight   | mock: 0.8  |
-| left_leg_muscle_weight   | number  | Y        | Left Leg Muscle Weight    | mock: 0.8  |
-| right_leg_muscle_weight  | number  | Y        | Right Leg Muscle Weight   | mock: 0.8  |
-| trunk_muscle_weight      | number  | Y        | Trunk Muscle Weight       | mock: 0.8  |
-| left_arm_fat             | number  | Y        | Left Arm Fat              | mock: 0.8  |
-| right_arm_fat            | number  | Y        | Right Arm Fat             | mock: 0.8  |
-| left_leg_fat             | number  | Y        | Left Leg Fat              | mock: 0.8  |
-| right_leg_fat            | number  | Y        | Right Leg Fat             | mock: 0.8  |
-| trunk_fat                | number  | Y        | Trunk Fat                 | mock: 0.8  |
 | left_arm_fat_mass        | number  | Y        | Left Arm Fat Mass         | mock: 0.8  |
 | right_arm_fat_mass       | number  | Y        | Right Arm Fat Mass        | mock: 0.8  |
 | left_leg_fat_mass        | number  | Y        | Left Leg Fat Mass         | mock: 0.8  |
 | right_leg_fat_mass       | number  | Y        | Right Leg Fat Mass        | mock: 0.8  |
 | trunk_fat_mass           | number  | Y        | Trunk Fat Mass            | mock: 0.8  |
-

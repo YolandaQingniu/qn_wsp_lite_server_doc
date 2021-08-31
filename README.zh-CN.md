@@ -1,0 +1,428 @@
+# Yolanda WSP Docker SDK 接入文档
+
+[English](./README.en.md) | [简体中文](./README.zh-CN.md)
+
+> 最新SDK版本号: 1.0.0
+
+本SDK通过Docker发布.
+
+Docker是开源的容器平台.
+
+它让开发者可以打包应用进容器. 
+
+容器简化了应用的分发.
+
+## 角色
+本SDK存在4类角色.
+1. 秤
+2. App
+3. Docker
+4. 服务器
+
+## 请求流程
+1.App <----> Scale
++ APP通过蓝牙发送数据到Scale, 告知Scale Docker的域名.
++ Scale通过蓝牙发送数据到APP.
+
+2.Scale ----> Docker
++ 秤通过HTTP请求发送加密数据到Docker. 
++ Docker解密并解析数据, 然后发回响应给秤.
+
+3.Docker <----> Server
++ Docker通过HTTP请求发送数据到Server.
++ Server接收到Docker的数据.
++ Server通过HTTP请求发送数据到Docker, 以此获取更多指标数据.
+
+4.服务器 <----> App
++ APP通过HTTP请求发送数据到服务器.
++ Server响应APP请求.
+
+## 如何创建Docker服务?
+1. 安装Docker. 参考 https://www.docker.com/get-started
+
+2. 创建一个目录并进入目录.
+```sh
+mkdir yolanda_wsp_lite && cd yolanda_wsp_lite
+```
+
+3. vim Dockerfile
+```dockerfile
+FROM registry.cn-shenzhen.aliyuncs.com/yolanda_open/wsp-lite:v1.0.0
+ENV CLIENT_URL="https://your-business-server.com"
+ENV CLIENT_ID="A_CLIENT_ID_FROM_YOLANDA_PLEASE_CONTACT_US"
+ENV TZ="Asia/Shanghai"
+```
+
+> 贴士: 默认时区是UTC, 可以通过环境变量`TZ`进行更改. 容器日志存储在 log/access.log, 按天进行切割, 并保留7天日志.
+
+
+4. 构建并执行.
+```shell
+docker build . -t yolanda_wsp_lite
+docker run -p 8080:8080 yolanda_wsp_lite
+```
+
+5. 映射应用为域名
+
+示例: 0.0.0.0:8080 映射为 https://your-docker-server.com 或 http://your-docker-server.com
+
+
+## 接口 (Docker <- Scale)
+
+接口:
+```text
+GET https://your-docker-server.com/yolanda/wsp?code=
+```
+
+## 接口 (Docker <-> Server)
+
+### 上传数据（Docker -> Server)
+
+#### 接口
+```text
+POST https://your-business-server.com/wsp/measurements
+```
+
+#### 示例
+```json
+{
+  "mac": "12:34:56:78:9A:BC",
+  "model_id": "0E2B",
+  "timestamp": 1527855059,
+  "weight": 55.0,
+  "heart_rate": 70,
+  "hmac": "183476B32E22B26989AD4744C3AE13CCA857EB021C9290CFC83FF46A544D999BFF09F3DE988D58C2F435BFC70DB4C54CF018E35A5AE2A63A1D094350EFB2540908026F908CA690B81D5C13E1A4371D0E710F91DA67CFBDD55F50D593D1075CA23A2572F541B5047FD6FB4E59870740197628E2680EDCFFE4FB2F3F8CB31C8F22B16787F9AE44C1CB1E5D99714211F5370EBE1CB9CD8A760E8BAE668A515E2B85"
+}
+```
+
+#### 详情
+| 字段名     | 类型    | 是否必填 | 介绍               | 额外说明                     |
+|------------|---------|----------|--------------------|------------------------------|
+| mac        | string  | Y        | Mac                | mock: 12:34:56:78:9A:BC      |
+| model_id   | string  | Y        | 设备型号 (4 chars) | mock: 0E2B                   |
+| timestamp  | integer | Y        | 测量时间戳 (s)     | mock: 1582698882             |
+| weight     | number  | Y        | 体重 (kg)          | mock: 55.0                   |
+| heart_rate | integer | Y        | 心率 (BPM)         | mock: 70                     |
+| hmac       | string  | Y        | 签名               | mock: 183476B32E22B26989A... |
+
+#### 成功响应
++ 头部
+```text
+Content-Type：text/plain; charset=utf-8
+```
+
++ 正文
+```text
+success
+```
+
+#### 失败响应
++ 头部
+```text
+Content-Type：text/plain; charset=utf-8
+```
+
++ 正文
+```text
+fail
+```
+
+### 计算指标（Server -> Docker)
+
+#### 接口
+```text
+POST https://your-docker-server.com/yolanda/wsp/reports
+```
+
+#### 示例
+```json
+{
+  "weight": 58.9,
+  "height": 175.2,
+  "age": 20,
+  "gender": 1,
+  "hmac": "183476B32E22B26989AD4744C3AE13CCA857EB021C9290CFC83FF46A544D999BFF09F3DE988D58C2F435BFC70DB4C54CF018E35A5AE2A63A1D094350EFB2540908026F908CA690B81D5C13E1A4371D0E710F91DA67CFBDD55F50D593D1075CA23A2572F541B5047FD6FB4E59870740197628E2680EDCFFE4FB2F3F8CB31C8F22B16787F9AE44C1CB1E5D99714211F5370EBE1CB9CD8A760E8BAE668A515E2B85"
+}
+```
+
+#### 详情
+| 字段名 | 类型    | 是否必填 | 介绍                   | 额外说明                     |
+|--------|---------|----------|------------------------|------------------------------|
+| weight | number  | Y        | 体重 (kg)              | mock: 58.9                   |
+| height | number  | Y        | 身高 (cm)              | mock: 175.2                  |
+| age    | integer | Y        | 年龄                   | mock: 20                     |
+| gender | integer | Y        | 性别(0: 女性，1: 男性) | mock: 1                      |
+| hmac   | string  | Y        | 签名                   | mock: 183476B32E22B26989A... |
+
+
+#### 成功响应
++ 头部
+```text
+Content-Type：text/plain; charset=utf-8
+```
+
++ 正文
+```json
+{
+  "code": 0,
+  "data": {
+    "reports": {
+      "weight": 58.2,
+      "bmi": 20.1,
+      "bodyfat": 14,
+      "fat_free_weight": 50.1,
+      "subfat": 12.7,
+      "visfat": 3.4671535888517173,
+      "water": 62.2,
+      "bmr": 1451,
+      "muscle": 55.6,
+      "sinew": 47.5,
+      "bone": 2.51,
+      "protein": 19.5,
+      "score": 90.2,
+      "bodyage": 20,
+      "body_shape": 4,
+      "heart_rate": 0,
+      "cardiac_index": 0
+    }
+  },
+  "msg": "ok"
+}
+```
+
+#### 失败响应
++ 头部
+```text
+Content-Type: application/json
+```
+
++ 正文
+```json
+{
+  "code": 10002,
+  "data": {},
+  "msg": "Missing params or params error"
+}
+```
+
+#### 详情
+| 字段名          | 类型    | 是否必填 | 介绍     | 额外说明   |
+|-----------------|---------|----------|----------|------------|
+| code            | integer | Y        | Code     | mock：0    |
+| msg             | string  | Y        | Message  | mock：ok   |
+| data            | object  | Y        | Data     | mock：{}   |
+| reports         | object  | Y        | Reports  | mock：{}   |
+| weight          | number  | Y        | 体重     | mock：58.2 |
+| bmi             | number  | Y        | BMI      | mock：20.1 |
+| bodyfat         | number  | Y        | 体脂率   | mock：14   |
+| fat_free_weight | number  | Y        | 去脂体重 | mock：50.1 |
+| subfat          | number  | Y        | 皮下脂肪 | mock：12.7 |
+| visfat          | number  | Y        | 内脏脂肪 | mock：3.46 |
+| water           | number  | Y        | 水分     | mock：62.2 |
+| bmr             | integer | Y        | 基础代谢 | mock：1451 |
+| muscle          | number  | Y        | 骨骼肌率 | mock：55.6 |
+| sinew           | number  | Y        | 肌肉量   | mock：47.5 |
+| bone            | number  | Y        | 骨量     | mock：2.51 |
+| protein         | number  | Y        | 蛋白质   | mock：19.5 |
+| score           | number  | Y        | 分数     | mock：90.2 |
+| bodyage         | integer | Y        | 体年龄   | mock：20   |
+| body_shape      | integer | Y        | 体型     | mock：4    |
+| heart_rate      | integer | Y        | 心率     | mock：0    |
+| cardiac_index   | number  | Y        | 心脏指数 | mock：0    |
+
+
+## 接口(8电极)
+
+### 8电极上传数据（Docker -> Server)
+
+#### 接口
+```text
+POST https://your-business-server.com/wsp/eight_measurements
+```
+
+#### 示例
+```json
+{
+  "mac": "12:34:56:78:9A:BC",
+  "model_id": "0E2B",
+  "timestamp": 1527855059,
+  "weight": 55.0,
+  "heart_rate": 70,
+  "hmac": "183476B32E22B26989AD4744C3AE13CCA857EB021C9290CFC83FF46A544D999BFF09F3DE988D58C2F435BFC70DB4C54CF018E35A5AE2A63A1D094350EFB2540908026F908CA690B81D5C13E1A4371D0E710F91DA67CFBDD55F50D593D1075CA23A2572F541B5047FD6FB4E59870740197628E2680EDCFFE4FB2F3F8CB31C8F22B16787F9AE44C1CB1E5D99714211F5370EBE1CB9CD8A760E8BAE668A515E2B85"
+}
+```
+
+#### 详情
+| 字段名     | 类型    | 是否必填 | 介绍              | 额外说明                     |
+|------------|---------|----------|-------------------|------------------------------|
+| mac        | string  | Y        | Mac               | mock: 12:34:56:78:9A:BC      |
+| model_id   | string  | Y        | 设备类型 (4 字符) | mock: 0E2B                   |
+| timestamp  | integer | Y        | 测量时间戳 (s)    | mock: 1582698882             |
+| weight     | number  | Y        | 体重 (kg)         | mock: 55.0                   |
+| heart_rate | integer | Y        | 心率 (BPM)        | mock: 70                     |
+| hmac       | string  | Y        | 签名              | mock: 183476B32E22B26989A... |
+
+
+
+#### 成功响应
++ 头部
+```text
+Content-Type：text/plain; charset=utf-8
+```
+
++ 正文
+```text
+success
+```
+
+#### 失败响应
+
++ 头部
+```text
+Content-Type：text/plain; charset=utf-8
+```
+
++ 正文
+```text
+fail
+```
+
+### 8电极报告（Server -> Docker)
+
+#### 接口
+```text
+POST https://your-docker-server.com/yolanda/wsp/eight_reports
+```
+
+#### 示例
+```json
+{
+  "weight": 58.9,
+  "height": 175.2,
+  "age": 20,
+  "gender": 1,
+  "hmac": "183476B32E22B26989AD4744C3AE13CCA857EB021C9290CFC83FF46A544D999BFF09F3DE988D58C2F435BFC70DB4C54CF018E35A5AE2A63A1D094350EFB2540908026F908CA690B81D5C13E1A4371D0E710F91DA67CFBDD55F50D593D1075CA23A2572F541B5047FD6FB4E59870740197628E2680EDCFFE4FB2F3F8CB31C8F22B16787F9AE44C1CB1E5D99714211F5370EBE1CB9CD8A760E8BAE668A515E2B85"
+}
+```
+
+#### 详情
+| 字段名 | 类型    | 是否必填 | 介绍                   | 额外说明                     |
+|--------|---------|----------|------------------------|------------------------------|
+| weight | number  | Y        | 体重 (kg)              | mock: 58.9                   |
+| height | number  | Y        | 身高 (cm)              | mock: 175.2                  |
+| age    | integer | Y        | 年龄                   | mock: 20                     |
+| gender | integer | Y        | 性别(0: 女性，1: 男性) | mock: 1                      |
+| hmac   | string  | Y        | 签名                   | mock: 183476B32E22B26989A... |
+
+
+
+#### 成功响应
++ 头部
+```text
+Content-Type: application/json
+```
+
++ 正文
+```json
+{
+  "code": 0,
+  "data": {
+    "reports": {
+      "weight": 58.9,
+      "bmi": 20.1,
+      "bodyfat": 14,
+      "fat_free_weight": 50.1,
+      "subfat": 12.7,
+      "visfat": 3.4671535888517173,
+      "water": 62.2,
+      "bmr": 1451,
+      "muscle": 55.6,
+      "sinew": 47.5,
+      "bone": 2.51,
+      "protein": 19.5,
+      "score": 90.2,
+      "bodyage": 20,
+      "body_shape": 4,
+      "right_arm_muscle_weight": 0.8,
+      "left_arm_muscle_weight": 0.8,
+      "right_leg_muscle_weight": 0.8,
+      "left_leg_muscle_weight": 0.8,
+      "trunk_muscle_weight": 0.8,
+      "right_arm_fat": 0.8,
+      "left_arm_fat": 0.8,
+      "right_leg_fat": 0.8,
+      "left_leg_fat": 0.8,
+      "trunk_fat": 0.8
+    },
+    "extras": {
+
+    }
+  },
+  "msg": "ok"
+}
+```
+
+#### 失败响应
++ 头部
+```text
+Content-Type：text/plain; charset=utf-8
+```
+
++ 正文
+```json
+{
+  "code": 10002,
+  "data": {},
+  "msg": "Missing params or params error"
+}
+```
+
+#### 详情
+| 字段名                   | 类型    | 是否必填 | 介绍                | 额外说明   |
+|--------------------------|---------|----------|---------------------|------------|
+| code                     | integer | Y        | Code                | mock：0    |
+| msg                      | string  | Y        | Message             | mock：ok   |
+| data                     | object  | Y        | Data                | mock：{}   |
+| reports                  | object  | Y        | Reports             | mock：{}   |
+| weight                   | number  | Y        | 体重 (kg)           | mock：58.2 |
+| bmi                      | number  | Y        | BMI                 | mock：20.1 |
+| bodyfat                  | number  | Y        | 体脂率              | mock：14   |
+| fat_free_weight          | number  | Y        | 去脂体重            | mock：50.1 |
+| subfat                   | number  | Y        | 皮下脂肪            | mock：12.7 |
+| visfat                   | number  | Y        | 内脏脂肪等级        | mock：3.46 |
+| water                    | number  | Y        | 水分                | mock：62.2 |
+| bmr                      | integer | Y        | 基础代谢            | mock：1451 |
+| muscle                   | number  | Y        | 骨骼肌率            | mock：55.6 |
+| sinew                    | number  | Y        | 肌肉量              | mock：47.5 |
+| bone                     | number  | Y        | 骨量                | mock：2.51 |
+| protein                  | number  | Y        | 蛋白质              | mock：19.5 |
+| score                    | number  | Y        | 分数                | mock：90.2 |
+| bodyage                  | integer | Y        | 体年龄              | mock：20   |
+| body_shape               | integer | Y        | 体型                | mock：4    |
+| right_arm_muscle_weight  | number  | Y        | 肌肉量 (右上肢)     | mock：0.8  |
+| left_arm_muscle_weight   | number  | Y        | 肌肉量 (左上肢)     | mock：0.8  |
+| right_leg_muscle_weight  | number  | Y        | 肌肉量 (右下肢)     | mock：0.8  |
+| left_leg_muscle_weight   | number  | Y        | 肌肉量 (左下肢)     | mock：0.8  |
+| trunk_muscle_weight      | number  | Y        | 肌肉量 (躯干)       | mock：0.8  |
+| right_arm_fat            | number  | Y        | 脂肪 (右上肢)       | mock：0.8  |
+| left_arm_fat             | number  | Y        | 脂肪 (左上肢)       | mock：0.8  |
+| right_leg_fat            | number  | Y        | 脂肪 (右下肢)       | mock：0.8  |
+| left_leg_fat             | number  | Y        | 脂肪 (左下肢)       | mock：0.8  |
+| trunk_fat                | number  | Y        | 脂肪 (躯干)         | mock：0.8  |
+| water_mass               | number  | Y        | 水分百分比          | mock: 0.8  |
+| protein_mass             | number  | Y        | 蛋白质百分比        | mock: 0.8  |
+| bone_mass                | number  | Y        | 骨量百分比          | mock: 0.8  |
+| bodyfat_mass             | number  | Y        | 脂肪百分比          | mock: 0.8  |
+| obesity_bmi              | number  | Y        | 肥胖度 BMI          | mock: 0.8  |
+| fatty_liver_risk_control | number  | Y        | 脂肪肝风险等级      | mock: 0.8  |
+| obesity_degree           | number  | Y        | 肥胖度              | mock: 0.8  |
+| weight_control           | number  | Y        | 体重控制            | mock: 0.8  |
+| bodyfat_control          | number  | Y        | 脂肪控制            | mock: 0.8  |
+| muscle_control           | number  | Y        | 肌肉控制            | mock: 0.8  |
+| health_score             | number  | Y        | 健康分数            | mock: 0.8  |
+| health_body_shape        | number  | Y        | 健康体型            | mock: 0.8  |
+| left_arm_fat_mass        | number  | Y        | 脂肪百分比 (右上肢) | mock: 0.8  |
+| right_arm_fat_mass       | number  | Y        | 脂肪百分比 (左上肢) | mock: 0.8  |
+| left_leg_fat_mass        | number  | Y        | 脂肪百分比 (左上肢) | mock: 0.8  |
+| right_leg_fat_mass       | number  | Y        | 脂肪百分比 (左下肢) | mock: 0.8  |
+| trunk_fat_mass           | number  | Y        | 脂肪百分比 (躯干)   | mock: 0.8  |
