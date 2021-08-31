@@ -14,10 +14,10 @@ Docker是开源的容器平台.
 
 ## 角色
 本SDK存在4类角色.
-1. 秤
+1. Scale
 2. App
 3. Docker
-4. 服务器
+4. Server
 
 ## 请求流程
 1.App <----> Scale
@@ -33,7 +33,7 @@ Docker是开源的容器平台.
 + Server接收到Docker的数据.
 + Server通过HTTP请求发送数据到Docker, 以此获取更多指标数据.
 
-4.服务器 <----> App
+4.Server <----> App
 + APP通过HTTP请求发送数据到服务器.
 + Server响应APP请求.
 
