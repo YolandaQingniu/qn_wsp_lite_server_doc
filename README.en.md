@@ -53,7 +53,7 @@ ENV CLIENT_ID="A_CLIENT_ID_FROM_YOLANDA_PLEASE_CONTACT_US"
 ENV TZ="Asia/Shanghai"
 ```
 
-> tips: The default timezone is UTC, you can change it by environment variable `TZ`. The log of Docker stores in log/access.log on a daily basis and keeps 7 days.
+> tips: The default timezone is UTC, you can change it by environment variable `TZ`. The log of Docker stores in log/access.log on a daily basis and keeps 7 days. The internal port of the container is 8080, and the external access port can be configured when Docker is started.
 
 
 4. Build and run.
@@ -169,7 +169,7 @@ Content-Type：text/plain; charset=utf-8
       "weight": 58.2,
       "bmi": 20.1,
       "bodyfat": 14,
-      "fat_free_weight": 50.1,
+      "lbm": 50.1,
       "subfat": 12.7,
       "visfat": 3.4671535888517173,
       "water": 62.2,
@@ -179,7 +179,7 @@ Content-Type：text/plain; charset=utf-8
       "bone": 2.51,
       "protein": 19.5,
       "score": 90.2,
-      "bodyage": 20,
+      "body_age": 20,
       "body_shape": 4,
       "heart_rate": 0,
       "cardiac_index": 0
@@ -205,29 +205,29 @@ Content-Type: application/json
 ```
 
 #### Description
-| name            | type    | required | description        | extra      |
-|-----------------|---------|----------|--------------------|------------|
-| code            | integer | Y        | Code               | mock：0    |
-| msg             | string  | Y        | Message            | mock：ok   |
-| data            | object  | Y        | Data               | mock：{}   |
-| reports         | object  | Y        | Reports            | mock：{}   |
-| weight          | number  | Y        | Weight             | mock：58.2 |
-| bmi             | number  | Y        | BMI                | mock：20.1 |
-| bodyfat         | number  | Y        | BodyFat            | mock：14   |
-| fat_free_weight | number  | Y        | Fat Free Weight    | mock：50.1 |
-| subfat          | number  | Y        | Subcutaneous Fat   | mock：12.7 |
-| visfat          | number  | Y        | Visceral fat level | mock：3.46 |
-| water           | number  | Y        | Water              | mock：62.2 |
-| bmr             | integer | Y        | BMR                | mock：1451 |
-| muscle          | number  | Y        | Muscle             | mock：55.6 |
-| sinew           | number  | Y        | Sinew              | mock：47.5 |
-| bone            | number  | Y        | Bone               | mock：2.51 |
-| protein         | number  | Y        | Protein            | mock：19.5 |
-| score           | number  | Y        | Score              | mock：90.2 |
-| bodyage         | integer | Y        | Body Age           | mock：20   |
-| body_shape      | integer | Y        | Body Shape         | mock：4    |
-| heart_rate      | integer | Y        | Heart Rate         | mock：0    |
-| cardiac_index   | number  | Y        | Cardiac Index      | mock：0    |
+| name          | type    | required | description        | extra      |
+| ------------- | ------- | -------- | ------------------ | ---------- |
+| code          | integer | Y        | Code               | mock：0    |
+| msg           | string  | Y        | Message            | mock：ok   |
+| data          | object  | Y        | Data               | mock：{}   |
+| reports       | object  | Y        | Reports            | mock：{}   |
+| weight        | number  | Y        | Weight             | mock：58.2 |
+| bmi           | number  | Y        | BMI                | mock：20.1 |
+| bodyfat       | number  | Y        | BodyFat            | mock：14   |
+| lbm           | number  | Y        | Fat Free Weight    | mock：50.1 |
+| subfat        | number  | Y        | Subcutaneous Fat   | mock：12.7 |
+| visfat        | number  | Y        | Visceral fat level | mock：3.46 |
+| water         | number  | Y        | Water              | mock：62.2 |
+| bmr           | integer | Y        | BMR                | mock：1451 |
+| muscle        | number  | Y        | Muscle             | mock：55.6 |
+| sinew         | number  | Y        | Sinew              | mock：47.5 |
+| bone          | number  | Y        | Bone               | mock：2.51 |
+| protein       | number  | Y        | Protein            | mock：19.5 |
+| score         | number  | Y        | Score              | mock：90.2 |
+| body_age      | integer | Y        | Body Age           | mock：20   |
+| body_shape    | integer | Y        | Body Shape         | mock：4    |
+| heart_rate    | integer | Y        | Heart Rate         | mock：0    |
+| cardiac_index | number  | Y        | Cardiac Index      | mock：0    |
 
 ## Endpoints For Eight Scale
 
@@ -327,7 +327,7 @@ Content-Type: application/json
       "weight": 58.9,
       "bmi": 20.1,
       "bodyfat": 14,
-      "fat_free_weight": 50.1,
+      "lbm": 50.1,
       "subfat": 12.7,
       "visfat": 3.4671535888517173,
       "water": 62.2,
@@ -337,7 +337,7 @@ Content-Type: application/json
       "bone": 2.51,
       "protein": 19.5,
       "score": 90.2,
-      "bodyage": 20,
+      "body_age": 20,
       "body_shape": 4,
       "right_arm_muscle_weight": 0.8,
       "left_arm_muscle_weight": 0.8,
@@ -375,7 +375,7 @@ Content-Type：text/plain; charset=utf-8
 
 #### Description
 | name                     | type    | required | description               | extra      |
-|--------------------------|---------|----------|---------------------------|------------|
+| ------------------------ | ------- | -------- | ------------------------- | ---------- |
 | code                     | integer | Y        | Code                      | mock：0    |
 | msg                      | string  | Y        | Message                   | mock：ok   |
 | data                     | object  | Y        | Data                      | mock：{}   |
@@ -383,7 +383,7 @@ Content-Type：text/plain; charset=utf-8
 | weight                   | number  | Y        | Weight (kg)               | mock：58.2 |
 | bmi                      | number  | Y        | BMI                       | mock：20.1 |
 | bodyfat                  | number  | Y        | BodyFat                   | mock：14   |
-| fat_free_weight          | number  | Y        | Fat Free Weight           | mock：50.1 |
+| lbm                      | number  | Y        | Fat Free Weight           | mock：50.1 |
 | subfat                   | number  | Y        | Subcutaneous Fat          | mock：12.7 |
 | visfat                   | number  | Y        | Visceral fat level        | mock：3.46 |
 | water                    | number  | Y        | Water                     | mock：62.2 |
@@ -393,7 +393,7 @@ Content-Type：text/plain; charset=utf-8
 | bone                     | number  | Y        | Bone                      | mock：2.51 |
 | protein                  | number  | Y        | Protein                   | mock：19.5 |
 | score                    | number  | Y        | Score                     | mock：90.2 |
-| bodyage                  | integer | Y        | Body Age                  | mock：20   |
+| body_age                 | integer | Y        | Body Age                  | mock：20   |
 | body_shape               | integer | Y        | Body Shape                | mock：4    |
 | right_arm_muscle_weight  | number  | Y        | Muscle Weight (Right Arm) | mock：0.8  |
 | left_arm_muscle_weight   | number  | Y        | Muscle Weight (Left Arm)  | mock：0.8  |

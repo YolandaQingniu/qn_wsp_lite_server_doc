@@ -53,7 +53,7 @@ ENV CLIENT_ID="A_CLIENT_ID_FROM_YOLANDA_PLEASE_CONTACT_US"
 ENV TZ="Asia/Shanghai"
 ```
 
-> 贴士: 默认时区是UTC, 可以通过环境变量`TZ`进行更改. 容器日志存储在 log/access.log, 按天进行切割, 并保留7天日志.
+> 贴士: 默认时区是UTC, 可以通过环境变量`TZ`进行更改. 容器日志存储在 log/access.log, 按天进行切割, 并保留7天日志. 容器内端口号为8080, 外部访问端口号可在启动Docker时自行配置.
 
 
 4. 构建并执行.
@@ -67,11 +67,11 @@ docker run -p 8080:8080 yolanda_wsp_lite
 示例: 0.0.0.0:8080 映射为 https://your-docker-server.com 或 http://your-docker-server.com
 
 
-## 接口 (Docker <- Scale)
+## 接口 (Scale -> Docker)
 
 接口:
 ```text
-GET https://your-docker-server.com/yolanda/wsp?code=
+GET https://your-docker-server.com/yolanda/wsp?code={encrypted_data}
 ```
 
 ## 接口 (Docker <-> Server)
@@ -170,7 +170,7 @@ Content-Type：text/plain; charset=utf-8
       "weight": 58.2,
       "bmi": 20.1,
       "bodyfat": 14,
-      "fat_free_weight": 50.1,
+      "lbm": 50.1,
       "subfat": 12.7,
       "visfat": 3.4671535888517173,
       "water": 62.2,
@@ -180,7 +180,7 @@ Content-Type：text/plain; charset=utf-8
       "bone": 2.51,
       "protein": 19.5,
       "score": 90.2,
-      "bodyage": 20,
+      "body_age": 20,
       "body_shape": 4,
       "heart_rate": 0,
       "cardiac_index": 0
@@ -206,29 +206,29 @@ Content-Type: application/json
 ```
 
 #### 详情
-| 字段名          | 类型    | 是否必填 | 介绍     | 额外说明   |
-|-----------------|---------|----------|----------|------------|
-| code            | integer | Y        | Code     | mock：0    |
-| msg             | string  | Y        | Message  | mock：ok   |
-| data            | object  | Y        | Data     | mock：{}   |
-| reports         | object  | Y        | Reports  | mock：{}   |
-| weight          | number  | Y        | 体重     | mock：58.2 |
-| bmi             | number  | Y        | BMI      | mock：20.1 |
-| bodyfat         | number  | Y        | 体脂率   | mock：14   |
-| fat_free_weight | number  | Y        | 去脂体重 | mock：50.1 |
-| subfat          | number  | Y        | 皮下脂肪 | mock：12.7 |
-| visfat          | number  | Y        | 内脏脂肪 | mock：3.46 |
-| water           | number  | Y        | 水分     | mock：62.2 |
-| bmr             | integer | Y        | 基础代谢 | mock：1451 |
-| muscle          | number  | Y        | 骨骼肌率 | mock：55.6 |
-| sinew           | number  | Y        | 肌肉量   | mock：47.5 |
-| bone            | number  | Y        | 骨量     | mock：2.51 |
-| protein         | number  | Y        | 蛋白质   | mock：19.5 |
-| score           | number  | Y        | 分数     | mock：90.2 |
-| bodyage         | integer | Y        | 体年龄   | mock：20   |
-| body_shape      | integer | Y        | 体型     | mock：4    |
-| heart_rate      | integer | Y        | 心率     | mock：0    |
-| cardiac_index   | number  | Y        | 心脏指数 | mock：0    |
+| 字段名        | 类型    | 是否必填 | 介绍     | 额外说明   |
+| ------------- | ------- | -------- | -------- | ---------- |
+| code          | integer | Y        | Code     | mock：0    |
+| msg           | string  | Y        | Message  | mock：ok   |
+| data          | object  | Y        | Data     | mock：{}   |
+| reports       | object  | Y        | Reports  | mock：{}   |
+| weight        | number  | Y        | 体重     | mock：58.2 |
+| bmi           | number  | Y        | BMI      | mock：20.1 |
+| bodyfat       | number  | Y        | 体脂率   | mock：14   |
+| lbm           | number  | Y        | 去脂体重 | mock：50.1 |
+| subfat        | number  | Y        | 皮下脂肪 | mock：12.7 |
+| visfat        | number  | Y        | 内脏脂肪 | mock：3.46 |
+| water         | number  | Y        | 水分     | mock：62.2 |
+| bmr           | integer | Y        | 基础代谢 | mock：1451 |
+| muscle        | number  | Y        | 骨骼肌率 | mock：55.6 |
+| sinew         | number  | Y        | 肌肉量   | mock：47.5 |
+| bone          | number  | Y        | 骨量     | mock：2.51 |
+| protein       | number  | Y        | 蛋白质   | mock：19.5 |
+| score         | number  | Y        | 分数     | mock：90.2 |
+| body_age      | integer | Y        | 体年龄   | mock：20   |
+| body_shape    | integer | Y        | 体型     | mock：4    |
+| heart_rate    | integer | Y        | 心率     | mock：0    |
+| cardiac_index | number  | Y        | 心脏指数 | mock：0    |
 
 
 ## 接口(8电极)
@@ -331,7 +331,7 @@ Content-Type: application/json
       "weight": 58.9,
       "bmi": 20.1,
       "bodyfat": 14,
-      "fat_free_weight": 50.1,
+      "lbm": 50.1,
       "subfat": 12.7,
       "visfat": 3.4671535888517173,
       "water": 62.2,
@@ -341,7 +341,7 @@ Content-Type: application/json
       "bone": 2.51,
       "protein": 19.5,
       "score": 90.2,
-      "bodyage": 20,
+      "body_age": 20,
       "body_shape": 4,
       "right_arm_muscle_weight": 0.8,
       "left_arm_muscle_weight": 0.8,
@@ -379,7 +379,7 @@ Content-Type：text/plain; charset=utf-8
 
 #### 详情
 | 字段名                   | 类型    | 是否必填 | 介绍                | 额外说明   |
-|--------------------------|---------|----------|---------------------|------------|
+| ------------------------ | ------- | -------- | ------------------- | ---------- |
 | code                     | integer | Y        | Code                | mock：0    |
 | msg                      | string  | Y        | Message             | mock：ok   |
 | data                     | object  | Y        | Data                | mock：{}   |
@@ -387,7 +387,7 @@ Content-Type：text/plain; charset=utf-8
 | weight                   | number  | Y        | 体重 (kg)           | mock：58.2 |
 | bmi                      | number  | Y        | BMI                 | mock：20.1 |
 | bodyfat                  | number  | Y        | 体脂率              | mock：14   |
-| fat_free_weight          | number  | Y        | 去脂体重            | mock：50.1 |
+| lbm                      | number  | Y        | 去脂体重            | mock：50.1 |
 | subfat                   | number  | Y        | 皮下脂肪            | mock：12.7 |
 | visfat                   | number  | Y        | 内脏脂肪等级        | mock：3.46 |
 | water                    | number  | Y        | 水分                | mock：62.2 |
@@ -397,7 +397,7 @@ Content-Type：text/plain; charset=utf-8
 | bone                     | number  | Y        | 骨量                | mock：2.51 |
 | protein                  | number  | Y        | 蛋白质              | mock：19.5 |
 | score                    | number  | Y        | 分数                | mock：90.2 |
-| bodyage                  | integer | Y        | 体年龄              | mock：20   |
+| body_age                 | integer | Y        | 体年龄              | mock：20   |
 | body_shape               | integer | Y        | 体型                | mock：4    |
 | right_arm_muscle_weight  | number  | Y        | 肌肉量 (右上肢)     | mock：0.8  |
 | left_arm_muscle_weight   | number  | Y        | 肌肉量 (左上肢)     | mock：0.8  |
