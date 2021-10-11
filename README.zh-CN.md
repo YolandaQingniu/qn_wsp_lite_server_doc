@@ -327,35 +327,61 @@ Content-Type: application/json
 {
   "code": 0,
   "data": {
-    "reports": {
-      "weight": 58.9,
-      "bmi": 20.1,
-      "bodyfat": 14,
-      "lbm": 50.1,
-      "subfat": 12.7,
-      "visfat": 3.4671535888517173,
-      "water": 62.2,
-      "bmr": 1451,
-      "muscle": 55.6,
-      "sinew": 47.5,
-      "bone": 2.51,
-      "protein": 19.5,
-      "score": 90.2,
-      "body_age": 20,
-      "body_shape": 4,
-      "right_arm_muscle_weight": 0.8,
-      "left_arm_muscle_weight": 0.8,
-      "right_leg_muscle_weight": 0.8,
-      "left_leg_muscle_weight": 0.8,
-      "trunk_muscle_weight": 0.8,
-      "right_arm_fat": 0.8,
-      "left_arm_fat": 0.8,
-      "right_leg_fat": 0.8,
-      "left_leg_fat": 0.8,
-      "trunk_fat": 0.8
-    },
     "extras": {
-
+      "water_mass": 63.46153846153846,
+      "protein_mass": 17.17948717948718,
+      "bone_mass": 4.833333333333333,
+      "bodyfat_mass": 41.282051282051285,
+      "obesity_bmi": 0,
+      "fatty_liver_risk_control": 2,
+      "obesity_degree": 119.84365013029159,
+      "weight_control": -12.874697524705908,
+      "bodyfat_control": -15.347204628705889,
+      "muscle_control": 2.4725071039999804,
+      "health_score": 68.904493984,
+      "health_body_shape": 3,
+      "left_arm_muscle_weight": 2.76834,
+      "right_arm_muscle_weight": 2.83209,
+      "left_leg_muscle_weight": 8.68123,
+      "right_leg_muscle_weight": 8.72593,
+      "trunk_muscle_weight": 23.85385,
+      "left_arm_fat": 2.18987,
+      "right_arm_fat": 2.18414,
+      "left_leg_fat": 4.96095,
+      "right_leg_fat": 4.97996,
+      "trunk_fat": 16.16568,
+      "left_arm_fat_mass": 1.7080985999999998,
+      "right_arm_fat_mass": 1.7036292,
+      "left_leg_fat_mass": 3.8695410000000003,
+      "right_leg_fat_mass": 3.8843688000000003,
+      "trunk_fat_mass": 12.6092304
+    },
+    "reports": {
+      "bodyfat": 32.2,
+      "subfat": 28.9,
+      "visfat": 10,
+      "water": 49.5,
+      "bmr": 1511,
+      "muscle": 36.7,
+      "bone": 3.77,
+      "lbm": 52.9,
+      "protein": 13.4,
+      "sinew": 49.1,
+      "bmi": 26.4,
+      "score": 62.6,
+      "body_age": 33,
+      "body_shape": 1,
+      "right_arm_muscle_weight": 2.83209,
+      "left_arm_muscle_weight": 2.76834,
+      "right_leg_muscle_weight": 8.72593,
+      "left_leg_muscle_weight": 8.68123,
+      "trunk_muscle_weight": 23.85385,
+      "right_arm_fat": 2.18414,
+      "left_arm_fat": 2.18987,
+      "right_leg_fat": 4.97996,
+      "left_leg_fat": 4.96095,
+      "trunk_fat": 16.16568,
+      "weight": 78
     }
   },
   "msg": "ok"
@@ -383,7 +409,8 @@ Content-Type：text/plain; charset=utf-8
 | code                     | integer | Y        | Code                | mock：0    |
 | msg                      | string  | Y        | Message             | mock：ok   |
 | data                     | object  | Y        | Data                | mock：{}   |
-| reports                  | object  | Y        | Reports             | mock：{}   |
+| reports                  | object  | Y        | 报告指标            | mock：{}   |
+| extras                   | object  | Y        | 扩展指标            | mock：{}   |
 | weight                   | number  | Y        | 体重 (kg)           | mock：58.2 |
 | bmi                      | number  | Y        | BMI                 | mock：20.1 |
 | bodyfat                  | number  | Y        | 体脂率              | mock：14   |
