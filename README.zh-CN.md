@@ -253,14 +253,15 @@ POST https://your-business-server.com/wsp/eight_measurements
 ```
 
 #### 详情
-| 字段名     | 类型    | 是否必填 | 介绍              | 额外说明                     |
-|------------|---------|----------|-------------------|------------------------------|
-| mac        | string  | Y        | Mac               | mock: 12:34:56:78:9A:BC      |
-| model_id   | string  | Y        | 设备类型 (4 字符) | mock: 0E2B                   |
-| timestamp  | integer | Y        | 测量时间戳 (s)    | mock: 1582698882             |
-| weight     | number  | Y        | 体重 (kg)         | mock: 55.0                   |
-| heart_rate | integer | Y        | 心率 (BPM)        | mock: 70                     |
-| hmac       | string  | Y        | 签名              | mock: 183476B32E22B26989A... |
+| 字段名          | 类型    | 是否必填 | 介绍                  | 额外说明                     |
+| --------------- | ------- | -------- | --------------------- | ---------------------------- |
+| mac             | string  | Y        | Mac                   | mock: 12:34:56:78:9A:BC      |
+| model_id        | string  | Y        | 设备类型 (4 字符)     | mock: 0E2B                   |
+| timestamp       | integer | Y        | 测量时间戳 (s)        | mock: 1582698882             |
+| weight          | number  | Y        | 体重 (kg)             | mock: 55.0                   |
+| heart_rate      | integer | Y        | 心率 (BPM)            | mock: 70                     |
+| hmac            | string  | Y        | 签名                  | mock: 183476B32E22B26989A... |
+| resistance_flag | integer | Y        | 是否有效电阻 (1是0否) | mock: 1                      |
 
 
 

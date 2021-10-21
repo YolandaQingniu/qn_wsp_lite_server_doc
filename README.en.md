@@ -251,14 +251,15 @@ POST https://your-business-server.com/wsp/eight_measurements
 ```
 
 #### Description
-| name       | type    | required | description           | extra                        |
-|------------|---------|----------|-----------------------|------------------------------|
-| mac        | string  | Y        | Mac                   | mock: 12:34:56:78:9A:BC      |
-| model_id   | string  | Y        | Device Type (4 chars) | mock: 0E2B                   |
-| timestamp  | integer | Y        | Measure At (s)        | mock: 1582698882             |
-| weight     | number  | Y        | Weight (kg)           | mock: 55.0                   |
-| heart_rate | integer | Y        | Height Rate (BPM)     | mock: 70                     |
-| hmac       | string  | Y        | Signature hmac        | mock: 183476B32E22B26989A... |
+| name            | type    | required | description                                   | extra                        |
+| --------------- | ------- | -------- | --------------------------------------------- | ---------------------------- |
+| mac             | string  | Y        | Mac                                           | mock: 12:34:56:78:9A:BC      |
+| model_id        | string  | Y        | Device Type (4 chars)                         | mock: 0E2B                   |
+| timestamp       | integer | Y        | Measure At (s)                                | mock: 1582698882             |
+| weight          | number  | Y        | Weight (kg)                                   | mock: 55.0                   |
+| heart_rate      | integer | Y        | Height Rate (BPM)                             | mock: 70                     |
+| hmac            | string  | Y        | Signature hmac                                | mock: 183476B32E22B26989A... |
+| resistance_flag | integer | Y        | Resistance Identification (valid 1 invalid 0) | mock: 1                      |
 
 
 #### Success Response
