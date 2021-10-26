@@ -205,29 +205,29 @@ Content-Type: application/json
 ```
 
 #### Description
-| name          | type    | required | description        | extra      |
-| ------------- | ------- | -------- | ------------------ | ---------- |
-| code          | integer | Y        | Code               | mock：0    |
-| msg           | string  | Y        | Message            | mock：ok   |
-| data          | object  | Y        | Data               | mock：{}   |
-| reports       | object  | Y        | Reports            | mock：{}   |
-| weight        | number  | Y        | Weight             | mock：58.2 |
-| bmi           | number  | Y        | BMI                | mock：20.1 |
-| bodyfat       | number  | Y        | BodyFat            | mock：14   |
-| lbm           | number  | Y        | Fat Free Weight    | mock：50.1 |
-| subfat        | number  | Y        | Subcutaneous Fat   | mock：12.7 |
-| visfat        | number  | Y        | Visceral fat level | mock：3.46 |
-| water         | number  | Y        | Water              | mock：62.2 |
-| bmr           | integer | Y        | BMR                | mock：1451 |
-| muscle        | number  | Y        | Muscle             | mock：55.6 |
-| sinew         | number  | Y        | Sinew              | mock：47.5 |
-| bone          | number  | Y        | Bone               | mock：2.51 |
-| protein       | number  | Y        | Protein            | mock：19.5 |
-| score         | number  | Y        | Score              | mock：90.2 |
-| body_age      | integer | Y        | Body Age           | mock：20   |
-| body_shape    | integer | Y        | Body Shape         | mock：4    |
-| heart_rate    | integer | Y        | Heart Rate         | mock：0    |
-| cardiac_index | number  | Y        | Cardiac Index      | mock：0    |
+| name          | type    | required | description          | extra      |
+| ------------- | ------- | -------- | -------------------- | ---------- |
+| code          | integer | Y        | Code                 | mock：0    |
+| msg           | string  | Y        | Message              | mock：ok   |
+| data          | object  | Y        | Data                 | mock：{}   |
+| reports       | object  | Y        | Reports              | mock：{}   |
+| weight        | number  | Y        | Weight               | mock：58.2 |
+| bmi           | number  | Y        | BMI                  | mock：20.1 |
+| bodyfat       | number  | Y        | BodyFat (%)          | mock：14   |
+| lbm           | number  | Y        | Fat Free Weight      | mock：50.1 |
+| subfat        | number  | Y        | Subcutaneous Fat (%) | mock：12.7 |
+| visfat        | number  | Y        | Visceral fat level   | mock：3.46 |
+| water         | number  | Y        | Water (%)            | mock：62.2 |
+| bmr           | integer | Y        | BMR                  | mock：1451 |
+| muscle        | number  | Y        | Muscle (%)           | mock：55.6 |
+| sinew         | number  | Y        | Sinew                | mock：47.5 |
+| bone          | number  | Y        | Bone                 | mock：2.51 |
+| protein       | number  | Y        | Protein (%)          | mock：19.5 |
+| score         | number  | Y        | Score                | mock：90.2 |
+| body_age      | integer | Y        | Body Age             | mock：20   |
+| body_shape    | integer | Y        | Body Shape           | mock：4    |
+| heart_rate    | integer | Y        | Heart Rate           | mock：0    |
+| cardiac_index | number  | Y        | Cardiac Index        | mock：0    |
 
 ## Endpoints For Eight Scale
 
@@ -410,16 +410,16 @@ Content-Type：text/plain; charset=utf-8
 | extras                   | object  | Y        | Extras                    | mock：{}   |
 | weight                   | number  | Y        | Weight (kg)               | mock：58.2 |
 | bmi                      | number  | Y        | BMI                       | mock：20.1 |
-| bodyfat                  | number  | Y        | BodyFat                   | mock：14   |
+| bodyfat                  | number  | Y        | BodyFat (%)               | mock：14   |
 | lbm                      | number  | Y        | Fat Free Weight           | mock：50.1 |
-| subfat                   | number  | Y        | Subcutaneous Fat          | mock：12.7 |
+| subfat                   | number  | Y        | Subcutaneous Fat (%)      | mock：12.7 |
 | visfat                   | number  | Y        | Visceral fat level        | mock：3.46 |
-| water                    | number  | Y        | Water                     | mock：62.2 |
+| water                    | number  | Y        | Water (%)                 | mock：62.2 |
 | bmr                      | integer | Y        | BMR                       | mock：1451 |
-| muscle                   | number  | Y        | Muscle                    | mock：55.6 |
+| muscle                   | number  | Y        | Muscle (%)                | mock：55.6 |
 | sinew                    | number  | Y        | Sinew                     | mock：47.5 |
-| bone                     | number  | Y        | Bone                      | mock：2.51 |
-| protein                  | number  | Y        | Protein                   | mock：19.5 |
+| bone                     | number  | Y        | Bone (kg)                 | mock：2.51 |
+| protein                  | number  | Y        | Protein (%)               | mock：19.5 |
 | score                    | number  | Y        | Score                     | mock：90.2 |
 | body_age                 | integer | Y        | Body Age                  | mock：20   |
 | body_shape               | integer | Y        | Body Shape                | mock：4    |
@@ -428,15 +428,15 @@ Content-Type：text/plain; charset=utf-8
 | right_leg_muscle_weight  | number  | Y        | Muscle Weight (Right Leg) | mock：0.8  |
 | left_leg_muscle_weight   | number  | Y        | Muscle Weight (Left Leg)  | mock：0.8  |
 | trunk_muscle_weight      | number  | Y        | Muscle Weight (Trunk)     | mock：0.8  |
-| right_arm_fat            | number  | Y        | Fat (Right Arm)           | mock：0.8  |
-| left_arm_fat             | number  | Y        | Fat (Left Arm)            | mock：0.8  |
-| right_leg_fat            | number  | Y        | Fat (Right Leg)           | mock：0.8  |
-| left_leg_fat             | number  | Y        | Fat (Left Leg)            | mock：0.8  |
-| trunk_fat                | number  | Y        | Fat (Trunk)               | mock：0.8  |
-| water_mass               | number  | Y        | Water Mass                | mock: 0.8  |
-| protein_mass             | number  | Y        | Protein Mass              | mock: 0.8  |
-| bone_mass                | number  | Y        | Bone Mass                 | mock: 0.8  |
-| bodyfat_mass             | number  | Y        | Bodyfat Mass              | mock: 0.8  |
+| right_arm_fat            | number  | Y        | Fat (Right Arm) (%)       | mock：0.8  |
+| left_arm_fat             | number  | Y        | Fat (Left Arm) (%)        | mock：0.8  |
+| right_leg_fat            | number  | Y        | Fat (Right Leg) (%)       | mock：0.8  |
+| left_leg_fat             | number  | Y        | Fat (Left Leg) (%)        | mock：0.8  |
+| trunk_fat                | number  | Y        | Fat (Trunk) (%)           | mock：0.8  |
+| water_mass               | number  | Y        | Water Mass (L)            | mock: 0.8  |
+| protein_mass             | number  | Y        | Protein Mass (kg)         | mock: 0.8  |
+| bone_mass                | number  | Y        | Bone Mass (%)             | mock: 0.8  |
+| bodyfat_mass             | number  | Y        | Bodyfat Mass (kg)         | mock: 0.8  |
 | obesity_bmi              | number  | Y        | Obesity Bmi               | mock: 0.8  |
 | fatty_liver_risk_control | number  | Y        | Fatty Liver Risk Control  | mock: 0.8  |
 | obesity_degree           | number  | Y        | Obesity Degree            | mock: 0.8  |
@@ -445,8 +445,8 @@ Content-Type：text/plain; charset=utf-8
 | muscle_control           | number  | Y        | Muscle Control            | mock: 0.8  |
 | health_score             | number  | Y        | Health Score              | mock: 0.8  |
 | health_body_shape        | number  | Y        | Health Body Shape         | mock: 0.8  |
-| left_arm_fat_mass        | number  | Y        | Left Arm Fat Mass         | mock: 0.8  |
-| right_arm_fat_mass       | number  | Y        | Right Arm Fat Mass        | mock: 0.8  |
-| left_leg_fat_mass        | number  | Y        | Left Leg Fat Mass         | mock: 0.8  |
-| right_leg_fat_mass       | number  | Y        | Right Leg Fat Mass        | mock: 0.8  |
-| trunk_fat_mass           | number  | Y        | Trunk Fat Mass            | mock: 0.8  |
+| left_arm_fat_mass        | number  | Y        | Left Arm Fat Mass (kg)    | mock: 0.8  |
+| right_arm_fat_mass       | number  | Y        | Right Arm Fat Mass (kg)   | mock: 0.8  |
+| left_leg_fat_mass        | number  | Y        | Left Leg Fat Mass (kg)    | mock: 0.8  |
+| right_leg_fat_mass       | number  | Y        | Right Leg Fat Mass (kg)   | mock: 0.8  |
+| trunk_fat_mass           | number  | Y        | Trunk Fat Mass (kg)       | mock: 0.8  |

@@ -414,16 +414,16 @@ Content-Type：text/plain; charset=utf-8
 | extras                   | object  | Y        | 扩展指标            | mock：{}   |
 | weight                   | number  | Y        | 体重 (kg)           | mock：58.2 |
 | bmi                      | number  | Y        | BMI                 | mock：20.1 |
-| bodyfat                  | number  | Y        | 体脂率              | mock：14   |
+| bodyfat                  | number  | Y        | 体脂率 (%)          | mock：14   |
 | lbm                      | number  | Y        | 去脂体重            | mock：50.1 |
-| subfat                   | number  | Y        | 皮下脂肪            | mock：12.7 |
+| subfat                   | number  | Y        | 皮下脂肪率 (%)      | mock：12.7 |
 | visfat                   | number  | Y        | 内脏脂肪等级        | mock：3.46 |
-| water                    | number  | Y        | 水分                | mock：62.2 |
+| water                    | number  | Y        | 体水分 (%)          | mock：62.2 |
 | bmr                      | integer | Y        | 基础代谢            | mock：1451 |
-| muscle                   | number  | Y        | 骨骼肌率            | mock：55.6 |
+| muscle                   | number  | Y        | 骨骼肌率 (%)        | mock：55.6 |
 | sinew                    | number  | Y        | 肌肉量              | mock：47.5 |
 | bone                     | number  | Y        | 骨量                | mock：2.51 |
-| protein                  | number  | Y        | 蛋白质              | mock：19.5 |
+| protein                  | number  | Y        | 蛋白质 (%)          | mock：19.5 |
 | score                    | number  | Y        | 分数                | mock：90.2 |
 | body_age                 | integer | Y        | 体年龄              | mock：20   |
 | body_shape               | integer | Y        | 体型                | mock：4    |
@@ -432,15 +432,15 @@ Content-Type：text/plain; charset=utf-8
 | right_leg_muscle_weight  | number  | Y        | 肌肉量 (右下肢)     | mock：0.8  |
 | left_leg_muscle_weight   | number  | Y        | 肌肉量 (左下肢)     | mock：0.8  |
 | trunk_muscle_weight      | number  | Y        | 肌肉量 (躯干)       | mock：0.8  |
-| right_arm_fat            | number  | Y        | 脂肪 (右上肢)       | mock：0.8  |
-| left_arm_fat             | number  | Y        | 脂肪 (左上肢)       | mock：0.8  |
-| right_leg_fat            | number  | Y        | 脂肪 (右下肢)       | mock：0.8  |
-| left_leg_fat             | number  | Y        | 脂肪 (左下肢)       | mock：0.8  |
-| trunk_fat                | number  | Y        | 脂肪 (躯干)         | mock：0.8  |
-| water_mass               | number  | Y        | 水分百分比          | mock: 0.8  |
-| protein_mass             | number  | Y        | 蛋白质百分比        | mock: 0.8  |
+| right_arm_fat            | number  | Y        | 脂肪百分比 (右上肢) | mock：0.8  |
+| left_arm_fat             | number  | Y        | 脂肪百分比 (左上肢) | mock：0.8  |
+| right_leg_fat            | number  | Y        | 脂肪百分比 (右下肢) | mock：0.8  |
+| left_leg_fat             | number  | Y        | 脂肪百分比 (左下肢) | mock：0.8  |
+| trunk_fat                | number  | Y        | 脂肪百分比 (躯干)   | mock：0.8  |
+| water_mass               | number  | Y        | 水分 (L)            | mock: 0.8  |
+| protein_mass             | number  | Y        | 蛋白质重量          | mock: 0.8  |
 | bone_mass                | number  | Y        | 骨量百分比          | mock: 0.8  |
-| bodyfat_mass             | number  | Y        | 脂肪百分比          | mock: 0.8  |
+| bodyfat_mass             | number  | Y        | 脂肪重量            | mock: 0.8  |
 | obesity_bmi              | number  | Y        | 肥胖度 BMI          | mock: 0.8  |
 | fatty_liver_risk_control | number  | Y        | 脂肪肝风险等级      | mock: 0.8  |
 | obesity_degree           | number  | Y        | 肥胖度              | mock: 0.8  |
@@ -449,8 +449,8 @@ Content-Type：text/plain; charset=utf-8
 | muscle_control           | number  | Y        | 肌肉控制            | mock: 0.8  |
 | health_score             | number  | Y        | 健康分数            | mock: 0.8  |
 | health_body_shape        | number  | Y        | 健康体型            | mock: 0.8  |
-| left_arm_fat_mass        | number  | Y        | 脂肪百分比 (右上肢) | mock: 0.8  |
-| right_arm_fat_mass       | number  | Y        | 脂肪百分比 (左上肢) | mock: 0.8  |
-| left_leg_fat_mass        | number  | Y        | 脂肪百分比 (左上肢) | mock: 0.8  |
-| right_leg_fat_mass       | number  | Y        | 脂肪百分比 (左下肢) | mock: 0.8  |
-| trunk_fat_mass           | number  | Y        | 脂肪百分比 (躯干)   | mock: 0.8  |
+| left_arm_fat_mass        | number  | Y        | 脂肪重量 (右上肢)   | mock: 0.8  |
+| right_arm_fat_mass       | number  | Y        | 脂肪重量 (左上肢)   | mock: 0.8  |
+| left_leg_fat_mass        | number  | Y        | 脂肪重量 (左上肢)   | mock: 0.8  |
+| right_leg_fat_mass       | number  | Y        | 脂肪重量 (左下肢)   | mock: 0.8  |
+| trunk_fat_mass           | number  | Y        | 脂肪重量 (躯干)     | mock: 0.8  |
