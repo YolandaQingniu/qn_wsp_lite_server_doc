@@ -443,7 +443,6 @@ Content-Type：text/plain; charset=utf-8
 | weight_control           | number  | Y        | Weight Control            | mock: 0.8  |
 | bodyfat_control          | number  | Y        | Bodyfat Control           | mock: 0.8  |
 | muscle_control           | number  | Y        | Muscle Control            | mock: 0.8  |
-| health_score             | number  | Y        | Health Score              | mock: 0.8  |
 | health_body_shape        | number  | Y        | Health Body Shape         | mock: 0.8  |
 | left_arm_fat_mass        | number  | Y        | Left Arm Fat Mass (kg)    | mock: 0.8  |
 | right_arm_fat_mass       | number  | Y        | Right Arm Fat Mass (kg)   | mock: 0.8  |

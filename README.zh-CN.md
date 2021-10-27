@@ -447,7 +447,6 @@ Content-Type：text/plain; charset=utf-8
 | weight_control           | number  | Y        | 体重控制            | mock: 0.8  |
 | bodyfat_control          | number  | Y        | 脂肪控制            | mock: 0.8  |
 | muscle_control           | number  | Y        | 肌肉控制            | mock: 0.8  |
-| health_score             | number  | Y        | 健康分数            | mock: 0.8  |
 | health_body_shape        | number  | Y        | 健康体型            | mock: 0.8  |
 | left_arm_fat_mass        | number  | Y        | 脂肪重量 (右上肢)   | mock: 0.8  |
 | right_arm_fat_mass       | number  | Y        | 脂肪重量 (左上肢)   | mock: 0.8  |
