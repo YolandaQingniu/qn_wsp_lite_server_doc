@@ -378,7 +378,9 @@ Content-Type: application/json
       "right_leg_fat": 4.97996,
       "left_leg_fat": 4.96095,
       "trunk_fat": 16.16568,
-      "weight": 78
+      "weight": 78,
+      "heart_rate": 0,
+      "cardiac_index": 0
     }
   },
   "msg": "ok"
@@ -449,3 +451,5 @@ Content-Type：text/plain; charset=utf-8
 | left_leg_fat_mass        | number  | Y        | Left Leg Fat Mass (kg)    | mock: 0.8  |
 | right_leg_fat_mass       | number  | Y        | Right Leg Fat Mass (kg)   | mock: 0.8  |
 | trunk_fat_mass           | number  | Y        | Trunk Fat Mass (kg)       | mock: 0.8  |
+| heart_rate               | integer | Y        | Heart Rate                | mock：0    |
+| cardiac_index            | number  | Y        | Cardiac Index             | mock：0    |
