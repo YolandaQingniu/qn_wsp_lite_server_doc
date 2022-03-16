@@ -2,7 +2,11 @@
 
 [English](./README.en.md) | [简体中文](./README.zh-CN.md)
 
-> 最新SDK版本号: 1.0.1
+> 最新SDK版本号: 1.0.2
+>
+> 更新日志：
+>
+> 1.0.2 => 修复了特殊情况下出现校验和错误的问题。
 
 本SDK通过Docker发布.
 
@@ -47,7 +51,7 @@ mkdir yolanda_wsp_lite && cd yolanda_wsp_lite
 
 3. vim Dockerfile
 ```dockerfile
-FROM registry.cn-shenzhen.aliyuncs.com/yolanda_open/wsp-lite:v1.0.1
+FROM registry.cn-shenzhen.aliyuncs.com/yolanda_open/wsp-lite:v1.0.2
 ENV CLIENT_URL="https://your-business-server.com"
 ENV CLIENT_ID="A_CLIENT_ID_FROM_YOLANDA_PLEASE_CONTACT_US"
 ENV TZ="Asia/Shanghai"
