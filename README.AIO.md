@@ -34,6 +34,34 @@ Docker是开源的容器平台.
 + APP通过HTTP请求发送数据到服务器.
 + Server响应APP请求.
 
+## 如何创建Docker服务?
+1. 安装Docker. 参考 https://www.docker.com/get-started
+
+2. 创建一个目录并进入目录.
+```sh
+mkdir yolanda_wsp_lite && cd yolanda_wsp_lite
+```
+
+3. vim Dockerfile
+```dockerfile
+FROM registry.cn-shenzhen.aliyuncs.com/yolanda_open/wsp-lite:v1.0.2
+ENV CLIENT_URL="https://your-business-server.com"
+ENV CLIENT_ID="A_CLIENT_ID_FROM_YOLANDA_PLEASE_CONTACT_US"
+ENV TZ="Asia/Shanghai"
+```
+
+> 贴士: 默认时区是UTC, 可以通过环境变量`TZ`进行更改. 容器日志存储在 log/access.log, 按天进行切割, 并保留7天日志. 容器内端口号为8080, 外部访问端口号可在启动Docker时自行配置.
+
+
+4. 构建并执行.
+```shell
+docker build . -t yolanda_wsp_lite
+docker run -p 8080:8080 yolanda_wsp_lite
+```
+
+5. 映射应用为域名
+
+示例: 0.0.0.0:8080 映射为 https://your-docker-server.com 或 http://your-docker-server.com
 
 ## 身高一体机接口 (Scale -> Docker)
 
