@@ -96,7 +96,7 @@ fail
 
 #### 接口
 ```text
-POST https://your-docker-server.com/yolanda/aios/aio_reports
+POST https://your-docker-server.com/yolanda/aios/reports
 ```
 
 #### 示例
