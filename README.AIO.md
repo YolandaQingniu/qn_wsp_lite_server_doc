@@ -1,9 +1,10 @@
 # Yolanda WSP Docker SDK 接入文档
 
-> 最新SDK版本号: 1.2.4
+> 最新SDK版本号: 1.2.5
 >
 > 更新日志：
 >
+> 1.2.5 => 支持扫码信息
 > 1.2.4 => 支持身高一体机。
 
 本SDK通过Docker发布.
@@ -89,7 +90,8 @@ POST https://your-business-server.com/aios/measurements
   "timestamp": 1666841725,
   "weight": 79.7,
   "height": 172.5,
-  "hmac": "FCAC4733C0DDE4AC1ACB3A46A2F81925BA2FEF981EAE5A0CADBE8663FF37FE3CC5C989ACC5EA8A436A952DFEEAF7B2D5D1FEABD1F5721B1664CAFFDD4BA42061B0C409CBA609664FFA70FD99B7C444D73BFD63D8D7652CF4F9D52B02DF7A984117E896976F860FB91497752A667750D1877B454F8A3F3C4485C3BF9DEDA6EE33"
+  "hmac": "FCAC4733C0DDE4AC1ACB3A46A2F81925BA2FEF981EAE5A0CADBE8663FF37FE3CC5C989ACC5EA8A436A952DFEEAF7B2D5D1FEABD1F5721B1664CAFFDD4BA42061B0C409CBA609664FFA70FD99B7C444D73BFD63D8D7652CF4F9D52B02DF7A984117E896976F860FB91497752A667750D1877B454F8A3F3C4485C3BF9DEDA6EE33",
+  "scan_code": "6922711079073"
 }
 ```
 
@@ -101,6 +103,7 @@ POST https://your-business-server.com/aios/measurements
 | weight     | number  | Y        | 体重 (kg)          | mock: 79.7                   |
 | height | integer | Y        | 身高 (cm)         | mock: 172.5                     |
 | hmac       | string  | Y        | 签名               | mock: 183476B32E22B26989A... |
+| scan_code  | string  | N        | 扫码信息            | mock: 6922711079073         |
 
 #### 成功响应
 + 头部
