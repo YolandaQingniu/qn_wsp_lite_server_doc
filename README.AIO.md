@@ -46,7 +46,7 @@ mkdir yolanda_wsp_lite && cd yolanda_wsp_lite
 
 3. vim Dockerfile
 ```dockerfile
-FROM registry.cn-shenzhen.aliyuncs.com/yolanda_open/wsp-lite:v1.2.4
+FROM registry.cn-shenzhen.aliyuncs.com/yolanda_open/wsp-lite:v1.2.5
 ENV CLIENT_URL="https://your-business-server.com"
 ENV CLIENT_ID="A_CLIENT_ID_FROM_YOLANDA_PLEASE_CONTACT_US"
 ENV SECRET_KEY="secret_key"
