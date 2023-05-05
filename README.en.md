@@ -315,7 +315,7 @@ POST https://your-docker-server.com/yolanda/wsp/eight_reports
 | age    | integer | Y        | Age                        | mock: 20                     |
 | gender | integer | Y        | Gender(0: Female，1: Male) | mock: 1                      |
 | hmac   | string  | Y        | Signature hmac             | mock: 183476B32E22B26989A... |
-
+|fit_hmac| string  | Y        | Previous signature hmac    | mock: 183476B32E22B26989A... |
 
 #### Success Response
 + Header
