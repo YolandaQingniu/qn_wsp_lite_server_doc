@@ -1,9 +1,11 @@
 # Document for Yolanda-WSP-Lite Server SDK
 
-> The latest version: 1.2.5
+> The latest version: 1.2.6
 >
 > Changelog
 >
+> 1.2.6 => Update the barcode data parsing of the height scale
+> 
 > 1.2.5 => Support scanning information
 > 
 > 1.2.4 => Support for height all-in-one machine
