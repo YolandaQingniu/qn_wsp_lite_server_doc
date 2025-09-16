@@ -1,9 +1,10 @@
 # Document for Yolanda-WSP-Lite Server SDK
 
-> The latest version: 1.2.6
+> The latest version: 1.2.7
 >
 > Changelog
->
+> 1.2.7 => Support CP30G
+> 
 > 1.2.6 => Update the barcode data parsing of the height scale
 > 
 > 1.2.5 => Support scanning information
@@ -54,7 +55,7 @@ mkdir yolanda_wsp_lite && cd yolanda_wsp_lite
 
 3. vim Dockerfile
 ```dockerfile
-FROM registry.cn-shenzhen.aliyuncs.com/yolanda_open/wsp-lite:v1.2.5
+FROM registry.cn-shenzhen.aliyuncs.com/yolanda_open/wsp-lite:v1.2.7
 ENV CLIENT_URL="https://your-business-server.com"
 ENV CLIENT_ID="A_CLIENT_ID_FROM_YOLANDA_PLEASE_CONTACT_US"
 ENV SECRET_KEY="secret_key"
